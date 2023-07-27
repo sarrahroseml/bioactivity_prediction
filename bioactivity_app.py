@@ -62,7 +62,7 @@ with st.sidebar.header('1. Upload your CSV data'):
 if st.sidebar.button('Predict'):
 
     #Reads in user-inputted file and converts into a csv file 'molecule_smi'
-    load_data= pd.read_table(uploaded_file, sep='', header=None)
+    load_data= pd.read_table(uploaded_file, sep=' ', header=None)
     load_data.to_csv('molecule_smi',sep = '\t',header= False, index= False)
 
     #Displays user-inputted data on main webpage in a table format
