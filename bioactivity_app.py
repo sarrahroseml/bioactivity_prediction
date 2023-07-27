@@ -8,7 +8,8 @@ import os
 import base64
 import pickle 
 
-#Molecular descriptor calculator 
+
+
 def desc_calc():
     bashCommand = "java -Xms1G -Xmx1G -Djava.awt.headless=true -jar ./PaDEL-Descriptor/PaDEL-Descriptor.jar -removesalt -standardizenitro -fingerprints -descriptortypes ./PaDEL-Descriptor/PubchemFingerprinter.xml -dir ./ -file descriptors_output.csv"
     #subprocess.Popen is a function that can execute a command in a new process. 
@@ -16,7 +17,7 @@ def desc_calc():
     process = subprocess.Popen(bashCommand.split(),stdout=subprocess.PIPE)
     #Waits for the process to complete. 
     # If the process ends by producing an error, that error is captured and stored in output.error.
-    output.error = process.communicate()
+    output,error = process.communicate()
     #Removes the file molecule.smi from the current directory
     os.remove('molecule.smi')
 
