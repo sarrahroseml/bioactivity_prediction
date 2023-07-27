@@ -6,7 +6,7 @@ from PIL import Imageimpo
 import subprocess
 import os
 import base64
-from joblib import load
+import pickle 
 
 #Molecular descriptor calculator 
 def desc_calc():
@@ -28,7 +28,7 @@ def filedownload(df):
     return href 
 
 def build_model(input_data):
-    load_model = load('acetyl_Model.joblib')
+    load_model = pickle.load(open('acetylcholinesterase_model.pkl', 'rb'))
     prediction = load_model.predict(input_data)
     st.header('**Prediction output**')
     #Creating a panda series of predictions of pIC50 values
