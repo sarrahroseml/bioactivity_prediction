@@ -39,7 +39,7 @@ def filedownload(df):
     return href 
 
 def build_model(input_data):
-     with zipfile.ZipFile('acetylcholinesterases_model.pkl.zip', 'r') as zip_file:
+    with zipfile.ZipFile('acetylcholinesterases_model.pkl.zip', 'r') as zip_file:
         # Extract the pickle file
         zip_file.extractall()
     load_model = pickle.load(open('acetylcholinesterases_model.pkl', 'rb'))
