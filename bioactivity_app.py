@@ -39,12 +39,9 @@ def filedownload(df):
     return href 
 
 def build_model(input_data):
-    url = ' https://raw.githubusercontent.com/sarrahroseml/bioactivity_prediction/raw/main/acetylcholinesterases_model.pkl.zip'
-    response = requests.get(url)
-    zip_file = zipfile.ZipFile(io.BytesIO(response.content))
-
-    # Extract the zip file
-    zip_file.extractall()
+     with zipfile.ZipFile('acetylcholinesterases_model.pkl.zip', 'r') as zip_file:
+        # Extract the pickle file
+        zip_file.extractall()
     load_model = pickle.load(open('acetylcholinesterases_model.pkl', 'rb'))
     prediction = load_model.predict(input_data)
     st.header('**Prediction output**')
