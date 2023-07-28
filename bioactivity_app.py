@@ -10,15 +10,23 @@ import pickle
 
 
 
-def desc_calc():
-    bashCommand = "java -Xms1G -Xmx1G -Djava.awt.headless=true -jar ./PaDEL-Descriptor/PaDEL-Descriptor.jar -removesalt -standardizenitro -fingerprints -descriptortypes ./PaDEL-Descriptor/PubchemFingerprinter.xml -dir ./ -file descriptors_output.csv"
+#def desc_calc():
+    #bashCommand = "java -Xms1G -Xmx1G -Djava.awt.headless=true -jar ./PaDEL-Descriptor/PaDEL-Descriptor.jar -removesalt -standardizenitro -fingerprints -descriptortypes ./PaDEL-Descriptor/PubchemFingerprinter.xml -dir ./ -file descriptors_output.csv"
     #subprocess.Popen is a function that can execute a command in a new process. 
     #stdout=subprocess.PIPE means that the output of the command will be piped to a special location that can be accessed by the Python script
-    process = subprocess.Popen(bashCommand.split(),stdout=subprocess.PIPE)
+    #process = subprocess.Popen(bashCommand.split(),stdout=subprocess.PIPE)
     #Waits for the process to complete. 
     # If the process ends by producing an error, that error is captured and stored in output.error.
-    output,error = process.communicate()
+    #output,error = process.communicate()
     #Removes the file molecule.smi from the current directory
+    #os.remove('molecule.smi')
+
+
+def desc_calc():
+    # Performs the descriptor calculation
+    bashCommand = "java -Xms2G -Xmx2G -Djava.awt.headless=true -jar ./PaDEL-Descriptor/PaDEL-Descriptor.jar -removesalt -standardizenitro -fingerprints -descriptortypes ./PaDEL-Descriptor/PubchemFingerprinter.xml -dir ./ -file descriptors_output.csv"
+    process = subprocess.Popen(bashCommand.split(), stdout=subprocess.PIPE)
+    output, error = process.communicate()
     os.remove('molecule.smi')
 
 #File download
