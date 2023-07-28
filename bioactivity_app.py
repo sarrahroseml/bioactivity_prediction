@@ -1,5 +1,7 @@
 #Import modules
-
+import requests
+import zipfile
+import io
 import streamlit as st
 import pandas as pd
 from PIL import Image
@@ -37,7 +39,13 @@ def filedownload(df):
     return href 
 
 def build_model(input_data):
-    load_model = pickle.load(open('acetylcholinesterase_model.pkl', 'rb'))
+    url = 'https://github.com/sarrahroseml/bioactivity_prediction/blob/main/acetylcholinesterases_model.pkl.zip'
+    response = requests.get(url)
+    zip_file = zipfile.ZipFile(io.BytesIO(response.content))
+
+    # Extract the zip file
+    zip_file.extractall()
+    load_model = pickle.load(open('acetylcholinesterases_model.pkl', 'rb'))
     prediction = load_model.predict(input_data)
     st.header('**Prediction output**')
     #Creating a panda series of predictions of pIC50 values
