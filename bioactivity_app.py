@@ -74,6 +74,11 @@ if st.sidebar.button('Predict'):
     load_data= pd.read_table(uploaded_file, sep=' ', header=None)
     load_data.to_csv('molecule_smi',sep = '\t',header= False, index= False)
 
+    if os.path.isfile('molecule.smi'):
+        os.remove('molecule.smi')
+    else:
+        st.write("File molecule.smi does not exist")
+
     #Displays user-inputted data on main webpage in a table format
     st.header('**Original Input Data**')
     st.write(load_data)
