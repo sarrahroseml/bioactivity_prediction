@@ -39,7 +39,7 @@ def filedownload(df):
     return href 
 
 def build_model(input_data):
-    url = 'https://github.com/sarrahroseml/bioactivity_prediction/blob/main/acetylcholinesterases_model.pkl.zip'
+    url = ' https://raw.githubusercontent.com/sarrahroseml/bioactivity_prediction/raw/main/acetylcholinesterases_model.pkl.zip'
     response = requests.get(url)
     zip_file = zipfile.ZipFile(io.BytesIO(response.content))
 
